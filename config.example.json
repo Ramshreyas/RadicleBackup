@@ -1,0 +1,5 @@
+{
+    "github_org": "your-github-org-name",
+    "api_key": "your-github-api-key",
+    "backup_dir": "/app/backup"
+}
