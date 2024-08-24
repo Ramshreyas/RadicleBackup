@@ -48,7 +48,8 @@ def initialize_radicle_repo(repo_path):
     """Initialize the repository as a Radicle project."""
     logging.info(f"Initializing Radicle project in {repo_path}...")
     try:
-        subprocess.run([RAD_BINARY, 'init'], cwd=repo_path, check=True)
+        # Use yes "" to send multiple newlines to rad init, effectively selecting defaults for all prompts
+        subprocess.run(['sh', '-c', f'yes "" | {RAD_BINARY} init'], cwd=repo_path, check=True)
         logging.info(f"Successfully initialized Radicle project: {repo_path}")
     except subprocess.CalledProcessError as e:
         logging.error(f"Failed to initialize Radicle project in {repo_path}: {e}")
