@@ -33,7 +33,7 @@ def clone_repo(repo_name, org_name, backup_dir):
 def update_repo(repo_name, backup_dir):
     repo_path = os.path.join(backup_dir, repo_name)
     logging.info(f'Updating {repo_name}...')
-    subprocess.run(['git', 'fetch', '--all'], cwd=repo_path, check=True)
+    subprocess.run(['git', 'fetch', 'origin'], cwd=repo_path, check=True)
     subprocess.run(['git', 'pull'], cwd=repo_path, check=True)
 
 def backup_repos(config):
