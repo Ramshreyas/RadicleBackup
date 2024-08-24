@@ -26,8 +26,12 @@ def save_urns(urns):
 
 def is_radicle_repo(repo_path):
     """Check if the repository is already initialized as a Radicle project."""
-    rad_path = os.path.join(repo_path, '.rad')
-    return os.path.exists(rad_path)
+    try:
+        # Run the 'rad .' command to check if the repository is initialized
+        result = subprocess.run([RAD_BINARY, '.'], cwd=repo_path, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        return True  # Success indicates the repository is initialized
+    except subprocess.CalledProcessError:
+        return False  # Failure indicates the repository is not initialized
 
 def get_radicle_urn(repo_path):
     """Retrieve the Radicle URN by running 'rad .'."""
