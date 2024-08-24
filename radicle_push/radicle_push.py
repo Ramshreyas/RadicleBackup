@@ -6,6 +6,9 @@ import logging
 # Configure logging to output to stdout
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+# Path to the rad binary
+RAD_BINARY = "/root/.radicle/bin/rad"  # Adjust this path based on the actual location inside the .radicle folder
+
 URN_FILE = "/app/radicle_urns.json"  # File to store URNs
 
 def load_urns():
@@ -29,7 +32,7 @@ def is_radicle_repo(repo_path):
 def get_radicle_urn(repo_path):
     """Retrieve the Radicle URN by running 'rad .'."""
     try:
-        result = subprocess.run(['rad', '.'], cwd=repo_path, check=True, stdout=subprocess.PIPE, text=True)
+        result = subprocess.run([RAD_BINARY, '.'], cwd=repo_path, check=True, stdout=subprocess.PIPE, text=True)
         urn = result.stdout.strip()
         logging.info(f"Retrieved Radicle URN for {repo_path}: {urn}")
         return urn
@@ -41,7 +44,7 @@ def initialize_radicle_repo(repo_path):
     """Initialize the repository as a Radicle project."""
     logging.info(f"Initializing Radicle project in {repo_path}...")
     try:
-        subprocess.run(['rad', 'init'], cwd=repo_path, check=True)
+        subprocess.run([RAD_BINARY, 'init'], cwd=repo_path, check=True)
         logging.info(f"Successfully initialized Radicle project: {repo_path}")
     except subprocess.CalledProcessError as e:
         logging.error(f"Failed to initialize Radicle project in {repo_path}: {e}")
