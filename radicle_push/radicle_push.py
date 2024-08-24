@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Path to the rad binary
 RAD_BINARY = "/root/.radicle/bin/rad"  # Adjust this path based on the actual location inside the .radicle folder
 
-URN_FILE = "/app/radicle_urns.json"  # File to store URNs
+URN_FILE = "/root/backup/radicle_urns.json"  # File to store URNs
 
 def load_urns():
     """Load the URNs from the JSON file."""
