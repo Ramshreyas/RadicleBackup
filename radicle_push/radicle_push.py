@@ -82,7 +82,7 @@ def process_repositories(backup_dir):
     save_urns(urns)
 
 def main():
-    backup_dir = "/app/backup"  # This should match the directory where the repos are backed up
+    backup_dir = "/root/backup"  # This should match the directory where the repos are backed up
     logging.info("Starting Radicle push process...")
     process_repositories(backup_dir)
     logging.info("Radicle push process completed.")
