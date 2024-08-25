@@ -32,7 +32,7 @@ Before you begin, ensure you have the following installed on your system:
 
 ## Repository Structure
 
-\```
+```
 /path/to/project/
 ├── github_backup/
 │   ├── Dockerfile
@@ -42,7 +42,7 @@ Before you begin, ensure you have the following installed on your system:
 ├── radicle_push/
 │   ├── radicle_push.py
 │   ├── crontab
-\```
+```
 
 ### `config.json` Example
 
