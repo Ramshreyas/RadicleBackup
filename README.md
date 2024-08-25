@@ -46,13 +46,13 @@ Before you begin, ensure you have the following installed on your system:
 
 ### `config.json` Example
 
-\```json
+```json
 {
     "github_org": "your-github-org-name",
     "api_key": "your-github-api-key",
     "backup_dir": "/app/backup"
 }
-\```
+```
 
 - **`github_org`**: The name of the GitHub organization you want to back up.
 - **`api_key`**: Your GitHub PAT.
@@ -64,18 +64,18 @@ Before you begin, ensure you have the following installed on your system:
 
 Navigate to the `github_backup/` directory and build the Docker image:
 
-\```bash
+```bash
 cd github_backup
 docker build -t github-backup .
-\```
+```
 
 ### 2. Running the Container
 
 Run the container, mounting the backup directory on your host machine:
 
-\```bash
+```bash
 docker run -d -v /root/backup:/app/backup --name github-backup github-backup
-\```
+```
 
 ### 3. Scheduled Backups
 
@@ -87,25 +87,25 @@ The GitHub backup process is configured to run daily at midnight via a cron job 
 
 Install Radicle on your server using the following command:
 
-\```bash
+```bash
 curl -sSf https://radicle.xyz/install | sh
-\```
+```
 
 ### 2. Verify Installation
 
 Check that Radicle has been installed correctly:
 
-\```bash
+```bash
 rad --version
-\```
+```
 
 ### 3. Create a Radicle Identity
 
 Create a Radicle identity on the server:
 
-\```bash
+```bash
 rad auth
-\```
+```
 
 Follow the prompts to create your identity.
 
@@ -113,18 +113,18 @@ Follow the prompts to create your identity.
 
 Start the Radicle node and check its status:
 
-\```bash
+```bash
 rad node status
 rad node start
-\```
+```
 
 ### 5. Setting Up the Radicle Push Script
 
 Place the `radicle_push.py` script in the appropriate directory on your server, and ensure it is executable:
 
-\```bash
+```bash
 chmod +x /path/to/radicle_push/radicle_push.py
-\```
+```
 
 ### 6. Configure Crontab for Radicle Push
 
@@ -132,15 +132,15 @@ Set up a cron job to run the Radicle push script daily at 1 AM:
 
 1. Edit the crontab:
 
-\```bash
+```bash
 crontab -e
-\```
+```
 
 2. Add the following entry to schedule the script:
 
-\```bash
+```bash
 0 1 * * * /usr/bin/python3 /path/to/radicle_push/radicle_push.py >> /var/log/radicle_push.log 2>&1
-\```
+```
 
 This will run the `radicle_push.py` script at 1 AM every day, and log the output to `/var/log/radicle_push.log`.
 
@@ -148,9 +148,9 @@ This will run the `radicle_push.py` script at 1 AM every day, and log the output
 
 To run the GitHub backup process, execute the following command:
 
-\```bash
+```bash
 docker run -d -v /root/backup:/app/backup --name github-backup github-backup
-\```
+```
 
 This command mounts the backup directory on your host machine to `/app/backup` inside the container.
 
@@ -158,9 +158,9 @@ This command mounts the backup directory on your host machine to `/app/backup` i
 
 1. Ensure the Radicle node is running:
 
-\```bash
+```bash
 rad node start
-\```
+```
 
 2. The Radicle push process is handled directly on the server via the cron job set up earlier. Ensure that the `radicle_push.py` script is correctly configured and scheduled.
 
@@ -170,15 +170,15 @@ You can manually test each process by running the associated commands:
 
 1. **Test GitHub Backup**:
 
-\```bash
+```bash
 docker exec -it github-backup python /app/github_backup.py
-\```
+```
 
 2. **Test Radicle Push**:
 
-\```bash
+```bash
 /usr/bin/python3 /path/to/radicle_push/radicle_push.py
-\```
+```
 
 ## Scheduling
 
@@ -197,9 +197,9 @@ If you encounter issues, consider the following steps:
 
    For GitHub backup:
 
-   \```bash
+   ```bash
    docker logs github-backup
-   \```
+   ```
 
    For Radicle push:
 
@@ -209,17 +209,17 @@ If you encounter issues, consider the following steps:
 
    Enter the container for manual inspection:
 
-   \```bash
+   ```bash
    docker exec -it github-backup /bin/bash
-   \```
+   ```
 
 3. **Verify Radicle Node**:
 
    Ensure the Radicle node is running:
 
-   \```bash
+   ```bash
    rad node status
-   \```
+   ```
 
 4. **Permissions**:
 
