@@ -64,7 +64,7 @@ def push_to_radicle(repo_path):
         logging.info(f"Successfully pushed {repo_path} to Radicle network")
     except subprocess.CalledProcessError as e:
         logging.error(f"Failed to push {repo_path} to Radicle network: {e}")
-        raise
+        # raise
 
 def process_repositories(backup_dir):
     """Process each repository in the backup directory."""
