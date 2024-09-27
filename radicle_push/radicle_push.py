@@ -9,7 +9,18 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Path to the rad binary
 RAD_BINARY = "/root/.radicle/bin/rad"  # Adjust this path based on the actual location inside the .radicle folder
 
-URN_FILE = "/root/backup/radicle_urns.json"  # File to store URNs
+# Load configuration from config.json
+def load_config(config_file='config.json'):
+    """Load configuration from a JSON file."""
+    with open(config_file, 'r') as file:
+        return json.load(file)
+
+# Load config values
+config = load_config()
+
+# Paths from configuration file
+BACKUP_DIR = config.get('backup_dir', '/root/backup')
+URN_FILE = config.get('urn_file', f'{BACKUP_DIR}/radicle_urns.json')
 
 def load_urns():
     """Load the URNs from the JSON file."""
@@ -87,9 +98,8 @@ def process_repositories(backup_dir):
     save_urns(urns)
 
 def main():
-    backup_dir = "/root/backup"  # This should match the directory where the repos are backed up
-    logging.info("Starting Radicle push process...")
-    process_repositories(backup_dir)
+    logging.info(f"Starting Radicle push process for backup directory: {BACKUP_DIR}...")
+    process_repositories(BACKUP_DIR)
     logging.info("Radicle push process completed.")
 
 if __name__ == "__main__":
