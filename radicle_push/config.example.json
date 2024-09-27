@@ -1,0 +1,4 @@
+{
+    "backup_dir": "/root/backup",
+    "urn_file": "/root/backup/radicle_urns.json"
+}

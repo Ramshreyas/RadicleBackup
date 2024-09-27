@@ -41,10 +41,11 @@ Before you begin, ensure you have the following installed on your system:
 │   ├── crontab
 ├── radicle_push/
 │   ├── radicle_push.py
+|   ├── config.json
 │   ├── crontab
 ```
 
-### `config.json` Example
+### Github `config.json` Example
 
 ```json
 {
@@ -57,6 +58,18 @@ Before you begin, ensure you have the following installed on your system:
 - **`github_org`**: The name of the GitHub organization you want to back up.
 - **`api_key`**: Your GitHub PAT.
 - **`backup_dir`**: Directory inside the container where repositories will be backed up.
+
+### Radicle `config.json` Example
+
+```json
+{
+    "backup_dir": "/root/backup",
+    "urn_file": "/root/backup/radicle_urns.json"
+}
+```
+
+- **`backup_dir`**: Directory where repositories will be backed up.
+- **`urn_file`**: File where radicle URNs for each repo will be stored.
 
 ## GitHub Backup Process
 
